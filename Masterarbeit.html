@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="de">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Masterarbeit - Stephan Escher</title>
+
+		<meta name="description" content="Masterarbeit">
+		<meta name="author" content="Stephan Escher">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="fonts.css">
+		<link rel="stylesheet" href="css/topbar.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/light.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+			
+			datum = "27.03.2017";
+			longdatum = "27 März 2017";
+			
+			function updateBottom(slide){
+				slideCount=21;
+				result = "";
+				if(slide != 0 && slide !=2 && slide !=11 && slide !=16 && slide !=22 ){
+					result = "<span class=\"page\">Slide "+slide+"/"+slideCount+"</span>, Masterarbeit @ TU Dortmund von Stephan Escher, "+datum;
+				}
+				document.getElementById('bottombar').innerHTML=result;
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		
+		<div id="bottombar"><span class="page">Slide 2/30</span>, Masterarbeit @ TU Dortmund von Stephan Escher, 4.11.2014</div>
+		
+		<div class="reveal">
+		<div id=topbar class="hidden"></div>
+			<div class="slides">
+				<section style="height:100%" data-background="images/backgrounds/lhcb2_grey.png">
+					<h1 style="font-size:2.2em;margin-top:2em;font-weight:bold;">Simulation studies of scintillating fibre<br/>mats for the LHCb upgrade</h1>
+					<!--div id="topbar"><span name="chapter">1. Einführung</span></div-->
+					<div style="position:absolute;bottom:0%;width:100%;padding:20px;">
+						<div style="display:inline-block;vertical-align:top;font-size:0.8em">
+						<div style="width:100%;clear:both;text-align:center;">
+						<div style="display:inline-block;margin-bottom:0.5em;margin-top:8em;font-size:1.4em;">Präsentation der Masterarbeit von <a href="mailto:stephan.escher@tu-dortmund.de">Stephan Escher</a>
+						</div><br/>
+							<center><script>document.write("RWTH Aachen   " + longdatum);</script></center>
+						</div>
+						<div style="width:100%;margin-bottom:0.0em;margin-top:6em;font-size:1.4em;">
+						<img src="images/tu.png" style="height:60px;float:left;margin-top:3em;"/>
+						<img src="images/lhcb_logo.gif" style="height:60px;float:middle;margin-top:3em;"/>
+						<img src="images/scifi.png" style="height:65px;float:right;margin-top:3em;"/>
+						</div>
+					</div>
+					</div>
+				</section>
+				
+				
+				<section style="height:100%" data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Inhaltsverzeichnis</h2>
+					<div style="text-align:left;margin-top:8em;width:40%; margin-left:auto;margin-right:auto;font-size:1.05em;"><div style="font-size:1.2em;text-align:center;width:100%;margin-bottom:1.5em;">Diese Präsentation beinhaltet:</div>
+					<ol style="list-style-type: upper-roman;">
+						<li class="fragment grey">Vorstellung des <b>LHCb</b> Detektors </br> und die Motivation des <b>Upgrades</b></li>
+						<li class="fragment grey">Vorstellung des <b>SciFi</b> Trackers</li>
+						<li class="fragment grey">Testbeam Kampagne 2016 am <b>CERN</b></br> und anschließende Datenanalyse</li>
+						<!--<li class="fragment grey">A possible <b>TeV Completion</b></li>-->
+						<li class="fragment grey">stand-alone Simulation von</br> szintillierenden Fasermatten</li>
+						<li class="fragment grey">Zusammenfassung</li>
+					</ol></div>
+				</section>
+				
+				
+				
+				
+				
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<div style="text-align:left; padding:1em;margin-top:1.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'">Vorstellung des</span>
+					<h1 style="margin-top:6px;font-size:2em;">LHCb Detektors und dessen Upgrade</h1>
+					</div>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Das LHCb Experiment</h2>
+					<img src="images/lhcb.png" style="float:left;vertical-align:center;width:40%;margin-top:3em;margin-left: 3em"/>
+					<ul style="float:right;width:50%;margin-top:3em;margin-rigth: 3em;">
+					<li>LHCb misst <i>CP</i>-Verletzung im $B_{d}$ und $B_{s}$ Sytem, </br> sucht nach Neuer Physik jenseits des Standardmodells
+					</li>
+					<li class="fragment grey" >Hauptanforderungen an den Detektor:</br>
+						zuverlässige Unterscheidung von $\pi$/$K$,</br>
+						hohe Zerfallszeit Auflösung,</br>
+						gute Auflösung von Teilchenmassen
+					</li>
+					</ul>
+					<ul style="width:80%;margin-top:1em;">
+					
+					<div style="text-align:center;width:100%" class="fragment grey">Detektor Komponenten:</div>
+					<li class="fragment grey"><b>RICH:</b> messen Teilchengeschwindigkeit über Cherenkov-Effekt, </br> ermöglicht Teilchenidentifizierung (z.B. bei $\pi$ und $K$) 
+					</li>
+					<li class="fragment grey"><b>VELO:</b> misst 3D Track-Positionen zur Rekonstruktion von Vertices, </br> ermöglicht u.A. Messung von Zerfallszeiten
+					</li>
+					<li class="fragment grey"><b>Tracking Stationen:</b> ermöglicht Rekonstruktion von Teilchenspuren und Massen
+					</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Detektor Upgrade</h2>
+					<img src="images/upgrade.png" style="float:left;vertical-align:center;width:40%;margin-top:3em;margin-left: 3em"/>
+					<ul style="float:right;width:50%;margin-top:3em;margin-rigth: 3em;">
+					<li> instantane Luminosität wird auf $\mathcal{L}_{\text{inst}}= 2\cdot 10^{33}~\text{cm}^{-2}\text{s}^{-1}$ erhöht
+					</li>
+					<li class="fragment grey">verbesserte Trigger Effizienz für eine Vielzahl an Zerfallskanälen
+					</li>
+					</ul>
+					<ul style="width:80%;margin-top:1em;">
+					
+					<div style="text-align:center;width:100%" class="fragment grey">Veränderungen:</div>
+					<li class="fragment grey"><b>Trigger:</b> Einsatz eines vollen Software-Trigger Systems, benötigt Auslese des gesamten Detektors mit $40~\text{MHz}$ $\rightarrow$ Austausch der Front-End Elektronik
+					</li>
+					<li class="fragment grey"><b>Tracking:</b> erhöhte $\mathcal{L}_{\text{inst}}$ verlangt nach höherer Granularität und Strahlenhärte der Tracking-Detektoren</br> $\rightarrow$ Upgrade des VELO und TT, sowie Ersetzung von T1-T3 durch dem <b>SciFi Tracker</b>
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<div style="text-align:left; padding:1em;margin-top:1.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'">Vorstellung des</span>
+					<h1 style="margin-top:6px;font-size:2em;">SciFi Trackers</h1>
+					</div>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Anforderungen</h2>
+					
+					<ul style="margin-top:8em;width:80%;">
+					<li>Hit-Effizienz so groß wie möglich ($\approx 99\,\%$) mit einer Rausch-Cluster-Rate von $< 10\,\%$ </li>
+					<li class="fragment grey">räumliche Auflösung von $\le 100~\mu\text{m}$ in der Ablenkebene des Magneten
+					</li>
+					<li class="fragment grey">Materialmenge innerhalb der Akzeptanz minimieren $(\chi/\chi_0 \le 1\,\%)$
+					</li>
+					<li class="fragment grey">Auslese der Elektronik mit $40~\text{MHz}$ 
+					</li>
+					<li class="fragment grey">Detektor sollte diese Anforderungen auch nach Bestrahlung in Höhe von $50~\text{fb}^{-1}$ erfüllen
+					</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Layout</h2>
+					
+					<ul style="margin-top:3em;width:80%;"><div style="background-color:#BEE6A0;width:50%;margin-left:auto;margin-right:auto;padding:10px;border: 3px dotted #6EC72D;margin-bottom:6em;">$$Y_{ij}^{u,d}(\phi)= c_{ij}^{u,d}\left( \frac{\phi_1 \phi_2}{M^2} \right)^{n_{ij}^{u,d}}$$</div>
+					<li>Higgs doublet replaced by gauge-invariant expression $\phi_1 \phi_2$ (since two Higgs' are needed in SUSY and $\phi^\dagger \phi$ is not holomorphic)</li>
+					<li class="fragment grey">Is a special case of the <b>Frogatt-Nielsen mechanism</b>, where a $U(1)$ symmetry is assumed and broken</li>
+					<li class="fragment grey">$(\phi_1\phi_2)$, $q_L$, $u_R$ and $d_R$ can all carry a charge under this $U(1)$</li>
+					<li class="fragment grey">Demanding invariance leads to a "factorizable" form $n_{ij}^{u,d}=a_i + b_j^{u,d}$</li>
+					</ul>
+					<!--<img src="images/susy-part.png" style="float:right;margin-right:2em;margin-top:1em;width:60%;"/>-->
+				</section>
+				
+				<section data-background="images/backgrounds/cloud_verygrey.png">
+					<h2>Choice of parameters II</h2>
+					
+					<ul style="margin-top:3em;width:80%;"><div style="background-color:#BEE6A0;width:30%;margin-left:auto;margin-right:auto;padding:10px;border: 3px dotted #6EC72D;margin-bottom:2em;">$$n_{ij}^{u,d}=a_i + b_j^{u,d}$$</div>
+					<li>Assuming such a factorizable form, only one solution leads to the demanded hierarchy:$$a=(1,1,0), \quad b^d=(2,1,1), \quad b^u=(2,0,0)$$ <br/>so that $$Y^u\sim\begin{pmatrix}\varepsilon^3 &\varepsilon^1 &\varepsilon^1 \\\varepsilon^3 &\varepsilon^1 &\varepsilon^1 \\\varepsilon^2 &\varepsilon^0 &\varepsilon^0 \end{pmatrix}\quad Y^d\sim\begin{pmatrix}\varepsilon^3 &\varepsilon^2 &\varepsilon^2 \\\varepsilon^3 &\varepsilon^2 &\varepsilon^2 \\\varepsilon^2 &\varepsilon^1 &\varepsilon^1 \end{pmatrix}$$</li>
+					</ul>
+					<div style="inline-block; width:75%;margin:auto;text-align:left;margin-top:3em;color:#84B818;font-weight:bold;" class="fragment grey"><span style="margin-left:-1em;">⇒ </span>This structure can indeed reproduce all masses and mixings!</div>
+				</section>
+				
+				<section data-background="images/backgrounds/cloud_verygrey.png">
+					<h2>To the TeV completion...</h2>
+					
+					<ul style="margin-top:4em;width:80%;">
+					<li>Not meant to be realistic, but a proof of concept for a TeV completion of this theory without excessive flavor violation</li>
+					<li class="fragment grey">We introduce additional $N$ generations of heavy vectorlike Dirac fermions $S^{u,d}$ and $R^{u,d}$ with the gauge quantum numbers of the left- and righthanded chiral components of the $u$ and $d$ quark, respectively:<br/><br/>
+					$$S^d \sim q_L,\;\;\;  R^d \sim d_R,\;\;\;  S^u \sim q_L,\;\;\;  R^u \sim u_R$$
+					</li><br/><br/>
+					<li class="fragment grey">Their interactions are given by<br/><br/>
+					$$
+					-\mathcal{L} = \left[   
+					\bar{q}_L\lambda_0^d d_R +\bar{q}_L \lambda_1^d R^d + \bar{S}^d\lambda_2^d d_R + \bar{S}^d\left(  {\lambda_3^d}^\dagger P_L + \lambda_4^d P_R  \right)R^d
+					\right] \phi + \text{h.c.}+ (u \leftrightarrow d)$$
+					<img src="images/interactions.png" style="margin-top:1em;"/></li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/cloud_verygrey.png">
+					<h2>...and back</h2>
+					<img src="images/tev-yukawa.png" style="margin:4em auto;width:75%;"/>
+					<ul style="margin-top3em;width:80%;">
+					<li class="fragment grey">This gives us the effective Yukawa coupling matrices (analogously for $u$)<br/><br/>
+					$$Y^d=\lambda_0^d+\lambda_1^d\lambda_3^d\frac{\phi^\dagger \phi}{m_{R^d} m_{S^d}}\sum\limits_{n=0}\left( \lambda_4^d\lambda_3^d\frac{\phi^\dagger \phi}{m_{R^d} m_{S^d}}  \right)^n \lambda_2^d = \sum\limits_{n=0}c^{(n)}\left(\frac{\phi^\dagger \phi}{m_{R^d} m_{S^d}}\right)^n$$</li><br/>
+					</ul>
+					<div style="inline-block; width:75%;margin:auto;text-align:left;margin-top:3em;color:#84B818;font-weight:bold;" class="fragment grey"><span style="margin-left:-1em;">⇒ </span>Integrating out the heavy particles indeed reproduces the Higgs-dependent Yukawa couplings!<span style="color:black;font-weight:normal;margin-left:0.5em;"> (where $M^2=m_{R^d} m_{S^d}$)</span></div>
+				</section>
+				
+				<section data-background="images/backgrounds/cloud_verygrey.png">
+					<h2>Some remarks</h2>
+					
+					<ul style="margin-top:7em;width:82%;">
+					<li>Babu and Nandi discussed a Frogatt-Nielsen mechanism with Higgs as Flavon in <a href="http://dx.doi.org/10.1103/PhysRevD.62.033002">doi:10.1103/PhysRevD.62.033002</a></li>
+					<li class="fragment grey" data-fragment-index="1"><img src="images/corr1.png" style="margin-top:-1em;; margin-right:0em;float:right;height:9em;" class="fragment toHide" data-fragment-index="2"/><img src="images/corr2.png" style="margin-top:-1em;; margin-right:0em;float:right;height:9em;" class="fragment toShow" data-fragment-index="2"/>To ensure the validity of this hierarchy, we assume that the suppression by a loop factor is stronger than $\varepsilon$: $$\frac{g_F^2}{16\pi^2}\lt\varepsilon$$</li>
+					<li class="fragment grey" data-fragment-index="3" style="margin-top:2em;">We could also introduce Higgs-dependent kinetic terms, but one can argue that (for fundamental quarks) its effects are either subdominant in $\varepsilon$ or<br/> can be absorbed by Yukawa couplings</li>
+					<li class="fragment grey" data-fragment-index="4">CP violation effects considered by  Lebedev in <a href="http://arxiv.org/abs/1011.2630">arXiv:1011.2630 [hep-ph]</a></li>
+					</ul>
+				</section>
+				
+				
+				
+				
+				
+				<section data-background="images/backgrounds/penguin_grey.png">
+					<img src="images/backgrounds/penguin_bar.png" style="float:left;margin:0 1em 0 0;padding:0;height:600px;" /><img src="images/tu.png" style="float:right;margin: 0.6em 1em;padding:0;height:2em;" />
+					<div style="text-align:left; padding:1em;margin-top:14.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'">Effects On</span>
+					<h1 style="margin-top:15px;font-size:2.3em;">Flavor Changing <br/>Neutral Currents</h1>
+					</div>
+				</section>
+				
+				<section data-background="images/backgrounds/penguin_grey.png">
+					<h2>Flavor Changing Neutral Currents</h2>
+					
+					<div style="margin-top:3em;margin-left:-2.5em;">$$\begin{align}-\mathcal{L}^\text{Y}&=     \bar{u}_{Li} \;m_{ij}^u\;  u_{Rj}+  \bar{d}_{Li}\; m_{ij}^d\; d_{Rj}   + \text{h.c.}\\
+					&+   \bar{u}_{Li} \frac{h}{\sqrt{2}v} \left(2n_{ij}^u+1\right) \;m_{ij}^u\;  u_{Rj}+  \bar{d}_{Li} \frac{h}{\sqrt{2}v} \left(2n_{ij}^d+1\right) \;m_{ij}^d\;   d_{Rj}   + \text{h.c.} + O(h^2),\end{align}$$</div>
+					<ul style="margin-top:1em;width:80%;">
+					<li>Looking back at the effective Lagrangian, we see that the Higgs-fermion couplings are no longer neccessarily diagonal in the mass eigenbasis <br/><span style="color:#84B818;font-weight:bold;" class="fragment grey">⇒ The Higgs mediates tree-level FCNCs!</span></li><br/><br/>
+					
+					<li class="fragment grey">To switch to the mass basis, we use a bi-unitary transformation:
+					$$u_{L/R}\rightarrow V^u_{L/R}u_{L/R}, \qquad d_{L/R}\rightarrow V^d_{L/R}d_{L/R}$$
+					</li>
+					<li class="fragment grey">This leads to the following interactions between quarks and the physical Higgs:
+					$$\mathcal{L}^{hff}=-\frac{h}{\sqrt{2}}J_h,\qquad J_h\equiv \frac{m_i^u}{v^2}\bar{u}_i u_i + 2 \left(  G_{ij}^u \bar{u}_{Li}u_{Rj} + \text{h.c.} \right) + (u \leftrightarrow d),$$
+					$$\text{where  } G_{ij}^{u,d}\equiv  \frac{m_k^{u,d}}{v}n_{lm}^{u,d}V_{L\,li}^{*\,u,d} V_{L\, lk}^{u,d}V_{R\, mk}^{*\, u,d} V_{R\, mj}^{u,d}$$
+					</li>
+					<li class="fragment grey"><img src="images/four-fermion.png" style="float:right;height:3.5em;margin:0;"/>Integrating out the Higgs at tree level gives an effective four-fermion interaction $\mathcal{L}_{4f}= \frac{J_h^2}{4m_h^2}$</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/penguin_grey.png">
+					<h2>Flavor Changing Neutral Currents</h2>
+					
+					<ul style="margin-top:3.5em;width:80%;">
+					<li>For factorizable $n_{ij}^{u,d}=a_i + b_j^{u,d}$, the new flavor-breaking coupling $G_{ij}^{u,d}$ takes a simpler form:<br/>
+					$$G_{ij}^{u,d} = A_{ij}^{u,d}\,\frac{m_j^{u,d}}{v} + \frac{m_i^{u,d}}{v} \, B_{ij}^{u,d},$$<br/>
+					$$A_{ij}^{u,d}\equiv V_{L\, li}^{*\, u,d} a_l V_{L\, lj}^{u,d}, \qquad B_{ij}^{u,d}\equiv V_{R\, mi}^{*\, u,d} b_m V_{R\, mj}^{u,d} $$<br/>
+					</li>
+					<li class="fragment grey">For the texture considered by Giudice and Lebedev, this gives the following matrices:<br/><br/>
+					$$A^{u,d}=\begin{pmatrix}1&\varepsilon^2&\varepsilon^1\\\varepsilon^2&1&\varepsilon^1\\\varepsilon^1&\varepsilon^1&\varepsilon^2 \end{pmatrix},\quad B^d=\begin{pmatrix}2&\varepsilon^1&\varepsilon^1\\ \varepsilon^1&1&\varepsilon^2 \\ \varepsilon^1 & \varepsilon^2 & 1\end{pmatrix}, \quad B^u=\begin{pmatrix}2&\varepsilon^2&\varepsilon^2\\ \varepsilon^2 & \varepsilon^4 & \varepsilon^4 \\ \varepsilon^2 & \varepsilon^4 & \varepsilon^4 \end{pmatrix}$$
+					</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/penguin_grey.png">
+					<h2>Experimental Constraints I</h2>
+					
+					<img src="images/kaon.png" style="height:5em; margin-top:3.5em;margin-bottom:1.4em;margin-left:auto;padding-right:3em;margin-right:4em;"/><img src="images/dipole.png" style="height:5em; margin-top:3.5em;margin-bottom:1.4em;margin-right:auto;margin-left:1em;" class="fragment grey" data-fragment-index="1"/>
+					
+					<ul style="margin-top:0em;width:80%;">
+					<li><b>$\Delta F = 2$ constraints:</b> Contributions to mass differences in Kaon, $D^0$, $B^0$ and $B^0_s$ mixing. E.g., for Kaons:<br/>
+					$$\mathcal{L}^{\Delta S=2}=\frac{m_s^2}{v^2m_h^2}\left(A_{12}^d\bar{d}_L s_R\;+\; B_{12}^d \bar{d}_R s_L\right)^2$$<br/>
+					$$\frac{\Delta m_K}{m_K}\simeq\frac{5f_K^2m_K^2}{12v^2m_h^2}\left(  {A_{12}^d}^2 + {B_{12}^d}^2 -\frac{12}{5}A_{12}^d B_{12}^d \right)$$<br/>
+					Compatible with constraints since all relevant matrix elements $O(\varepsilon)$ or smaller
+					</li><br/>
+					<li class="fragment grey" data-fragment-index="1"><b>$\Delta F = 1$ constraints</b> from processes like $b\rightarrow s\gamma$ less restrictive due to suppression by a loop factor and two Yukawa couplings</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/penguin_grey.png">
+					<h2>Experimental constraints II</h2>
+					
+					<ul style="margin-top:5em;width:80%;">
+					<li>The CP-violating Observable $\varepsilon_K$ gives a slightly more restrictive constraint on the imaginary parts of  the matrix elements</li>
+					<li class="fragment grey">Higgs-dependent Yukawa couplings can directly be extended to the lepton sector. Here, Higgs mediated currents can contribute to rare decays such as $\mu\rightarrow e\gamma, \mu\rightarrow eee, \tau\rightarrow \mu\gamma$ or $\tau\rightarrow \mu\mu\mu$.<br/>
+					<img src="images/rare-lepton.png" style="width:50%;margin:1em auto;display:block" />
+					</li>
+					<li class="fragment grey">However, parameters can easily be chosen so that these processes lie beyond any foreseeable experimental reach</li>
+					</ul>
+				</section>
+				
+				
+				
+				
+				
+				<section data-background="images/backgrounds/higgs_grey.png">
+					<img src="images/backgrounds/higgs_bar.png" style="float:left;margin:0 1em 0 0;padding:0;height:600px;" /><img src="images/tu.png" style="float:right;margin: 0.6em 1em;padding:0;height:2em;" />
+					<div style="text-align:left; padding:1em;margin-top:14.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'">Effects On</span>
+					<h1 style="margin-top:15px;font-size:3em;">Higgs Physics</h1>
+					</div>
+				</section>
+				
+				<section data-background="images/backgrounds/higgs_grey.png">
+					<h2>Higgs couplings</h2>
+					<img src="images/higgs2.png" style="width:35%;margin:0em;float:right;"/>
+					<ul style="margin-top:8em;width:50%;">
+					<li>Coupling to weak gauge bosons is unaltered</li>
+					<li class="fragment grey">Coupling to fermions is, to lowest order in $\varepsilon$, enhanced by $2n_{ij}^{u,d,l}+1$ (⇒ top coupling unchanged)</li>
+					<li class="fragment grey">Therefore, the coupling to the massless gluons and photons is barely affected</li><br/><br/><br/>
+					<span class="fragment grey" style="color:#84B818; margin-left:-1em;font-weight:bold;">⇒ No change in the main Higgs production processes</span>
+					<li class="fragment grey"><i>Additionally,</i> there might be flavor violating production via $t\rightarrow hc$, possibly observable at the LHC</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/higgs_grey.png">
+					<h2>Higgs decays</h2>
+					<br/><br/>
+					However, the situation looks different when considering Higgs <i>decays</i>:
+					<img src="images/branching3.png" style="width:60%;margin:0em;"/><br/>
+					<span class="fragment grey" style="font-size:1.1em;">$\frac{\Gamma(h\rightarrow b\bar{b})}{\Gamma(h\rightarrow b\bar{b})_{SM}} \approx \frac{\Gamma(h\rightarrow c\bar{c})}{\Gamma(h\rightarrow c\bar{c})_{SM}} \approx \frac{\Gamma(h\rightarrow \tau^+\tau^-)}{\Gamma(h\rightarrow \tau^+\tau^-)_{SM}} \approx 9, \quad \frac{\Gamma(h\rightarrow \mu^+\mu^-)}{\Gamma(h\rightarrow \mu^+\mu^-)_{SM}} \approx 25$</span>
+					<div class="fragment grey" style="inline-block; width:75%;margin:auto;text-align:left;margin-top:1em;"><span style="margin-left:-1em;">⇒ </span>Fermion pair end states are boosted with respect to the standard model, making boson final states much less prominent</div>
+				</section>
+				
+				<section data-background="images/backgrounds/higgs_grey.png">
+					<h2>Higgs decays @ the LHC</h2>
+					<ul style="margin-top:2.5em;width:80%;">
+					<li>We don't measure branching ratios, but rather $\sigma \times \mathcal{BR}$ for a given final state</li>
+					<li class="fragment grey">The <i>signal strength</i> is defined as $$\mu\equiv\frac{(\sigma\times\mathcal{BR})_\text{obs}}{(\sigma\times\mathcal{BR})_\text{SM}}$$</li>
+					<li class="fragment grey">We expect a strong suppression for $WW,ZZ$ and $\gamma\gamma$ final states, but:<img src="images/signal.png" style="margin:1em auto;height:9.5em;float:left;"/><img src="images/branching3.png" style="height:11em;margin:0.7em auto;float:right;"/></li>
+					</ul>
+					<div style="inline-block; width:75%;margin:auto;text-align:left;margin-top:1em;color:#84B818;font-weight:bold;" class="fragment grey"><span style="margin-left:-1em;">⇒ </span>Higgs-dependent Yukawa couplings stand in disagreement with<br/> measured Higgs signal strengths <span style="font-size:2.1em;margin-left:2em;margin-top:-0.3em;margin-right:1em;float:right;">☹</span></div>
+				</section>
+				
+				
+				<section style="height:100%" data-background="images/backgrounds/cloud_verygrey.png">
+					<h2>Sources</h2><br/>
+					
+					<div style="text-align:left;width:70%;margin:3em auto;font-size:0.77em;">
+					<h4>Theory:</h4>
+					<b>[1] </b><span>G. F. Giudice, O. Lebedev "Higgs-dependent Yukawa couplings" <br/>In  <i>Phys. Lett..</i> <b>B665</b> (2008) pp. 79 <a href="http://arxiv.org/abs/0804.1753v3">arXiv:0804.1753 [hep-ph]</a></span><br/><br/>
+					<b>[2] </b><span>K. S. Babu and S. Nandi, "Natural fermion mass hierarchy and new signals for the Higgs boson" <br/>In <i>Phys. Rev.</i> <b>D62</b> (2000) p. 033002 <a href="http://dx.doi.org/10.1103/PhysRevD.62.033002">doi:10.1103/PhysRevD.62.033002</a></span><br/><br/>
+					<b>[3] </b><span>C. D. Frogatt and H. B. Nielsen "Hierarchy of quark masses, cabibbo angles and CP violation" <br/>In <i>Nucl. Phys.</i> <b>B147</b> (1979) p.277 <a href="http://dx.doi.org/10.1016/0550-3213(79)90316-X">doi:10.1016/0550-3213(79)90316-X</a></span><br/><br/>
+					
+					<b>[4] </b><span>O. Lebedev "CP violation with Higgs-dependent Yukawa couplings" <br/>In <i>Phys. Lett.</i> <b>B697</b> (2011), p. 58 <a href="http://arxiv.org/abs/1011.2630">arXiv:1011.2630 [hep-ph]</a></span><br/><br/>
+					<h4>Experiment:</h4>
+					
+					<b>[5] </b><span>K.A. Olive et al. (Particle Data Group) "Review of Particle Physics" <br/>In <i>Chin. Phys. C</i>, <b>38</b>, 090001 (2014).<a href="http://pdg.lbl.gov/">http://pdg.lbl.gov/</a></span><br/><br/>
+					<b>[6] </b><span>Avital Dery, Aielet Efrati, Yonit Hochberg, Yosef Nir "What if BR(h-->μμ)/BR(h-->ττ) does not equal m_μ^2/m_τ^2?" In <i>JHEP</i>, <b>1305</b> (2013) 039<a href="http://arxiv.org/abs/1302.3229">arXiv:1302.3229 [hep-ph]</a></span><br/><br/>
+					
+					 
+					</div>
+				</section>
+				
+				<section style="height:100%" data-background="images/backgrounds/cloud_verygrey.png">
+					<h2>Summary</h2><br/>
+						<div class="fragment grey"><h4>Theory:</h4><br/>
+						<ul style="width:80%">
+						<li>Giudice and Lebedev provide an effective theory that explains mass and mixing hierarchies through Higgs-dependent yukawa couplings, valid below the TeV scale</li>
+						<li>A possible TeV completion that is viable for quarks was discussed</li>
+						<li>Exhibits tree-level FCNC's and large deviations from SM predictions for Higgs branching ratios</li>
+						</ul><br/><br/></div>
+						<div class="fragment grey"><h4>Experiment:</h4><br/>
+						<ul style="width:80%">
+						<li>FCNC's are sufficiently suppressed to be compatible with experimental data</li>
+						<li>However, the enhanced bottom yukawa coupling leads to a suppression of Higgs to gauge boson decays in conflict with LHC data</li>
+						</ul></div>
+						
+					<div class="fragment roll-in" style="width:85%;margin-top:1.5em;padding-right:40px;text-align:right;color:#84B818;font-weight:bold;font-size:1.25em;text-shadow: 0px 0px 5px rgba(255,255,255, 1);">Any questions?</div>
+				</section>
+				
+				
+				<section data-background="images/backgrounds/cloud_verygrey.png">
+					<img src="images/backgrounds/cloud_bar.png" style="float:left;margin:0 1em 0 0;padding:0;height:600px;" /><img src="images/tu.png" style="float:right;margin: 0.6em 1em;padding:0;height:2em;" />
+					<div style="text-align:left; padding:1em;margin-top:14.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'"> </span>
+					<h1 style="margin-top:15px;font-size:2em;">Bonus Material</h1>
+					</div>
+				</section>
+				
+				<section style="height:100%" data-background="images/backgrounds/cloud_verygrey.png">
+					<h2>Backup: Spontaneous Symmetry Breaking</h2><br/>
+					
+					
+						<ul style="width:80%;margin-top:2em;">
+						<li>Down Yukawa: $ -\mathcal{L}\;=\;  \bar{q}_{Li}\;Y_{ij}^d\;\phi\; d_{Rj}     + \text{h.c.}; \quad\text{where } Y_{ij}^{d}(\phi)= c_{ij}^{d}\left( \frac{\phi^\dagger \phi}{M^2} \right)^{n_{ij}^{d}}$</li>
+						
+						<li>Electroweak Symmetry Breaking: $\phi= U \begin{pmatrix} 0 \\ v+\frac{h}{\sqrt{2}} \end{pmatrix}\Rightarrow Y_{ij}^{d}(h) = c_{ij}^{d}\left(\frac{v+h/\sqrt{2}}{M}\right)^{2n_{ij}^{d}}$</li>
+						
+						<li>With $\varepsilon\equiv \frac{v^2}{M^2}\;\Rightarrow\;Y_{ij}^{d}(h) = c_{ij}^{d} \;\varepsilon^{n_{ij}^d}\; \left(1+\frac{h}{\sqrt{2}v}\right)^{2n_{ij}^{d}}$</li>
+						
+						<li>Inserting this into the Yukawas gives $$\begin{align}-\mathcal{L}\;&=\bar{d}_{Li}\left( v+\frac{h}{\sqrt{2}} \right)c_{ij}^{d} \;\varepsilon^{n_{ij}^d}\; \left(1+\frac{h}{\sqrt{2}v}\right)^{2n_{ij}^{d}} d_{Rj}+\text{h.c.}\\
+						&=\bar{d}_{Li}\;v\,c_{ij}^{d} \;\varepsilon^{n_{ij}^d}\; \left(1+\frac{h}{\sqrt{2}v}\right)^{2n_{ij}^{d}+1} d_{Rj}+\text{h.c.}\\
+						&= \bar{d}_{Li}\;\underbrace{v\,c_{ij}^{d} \;\varepsilon^{n_{ij}^d}}_{\equiv m_{ij}}\; d_{Rj}
+						
+						+ \bar{d}_{Li}\;\frac{c_{ij}^{d} \;\varepsilon^{n_{ij}^d}}{\sqrt{2}}\; \left(2n_{ij}^{d}+1\right) d_{Rj}
+						
+						+ \text{h.c.} +O(h^2)
+						\end{align}
+						$$</li>
+						
+						</ul>
+				</section>
+				
+				
+				
+				
+				<section data-background="images/backgrounds/mosquitos_grey.png">
+					<img src="images/backgrounds/mosquitos_bar.png" style="float:left;margin:0 1em 0 0;padding:0;height:600px;" /><img src="images/tu.png" style="float:right;margin: 0.6em 1em;padding:0;height:2em;" />
+					<div style="text-align:left; padding:1em;margin-top:14.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'">Example of a</span>
+					<h1 style="margin-top:15px;font-size:2em;">TeV Completion</h1>
+					</div>
+				</section>
+				
+				<section data-background="images/backgrounds/mosquitos_grey.png">
+					<h2>To the TeV completion...</h2>
+					
+					<ul style="margin-top:3.5em;width:80%;">
+					<li>Not meant to be realistic, but a proof of concept for a TeV completion of this theory without excessive flavor violation</li>
+					<li class="fragment grey">We introduce additional $N$ generations of heavy vectorlike Dirac fermions $S^{u,d}$ and $R^{u,d}$ with the gauge quantum numbers of the left- and righthanded chiral components of the $u$ and $d$ quark, respectively:<br/><br/>
+					$$S^d (3,2)_{\frac{1}{6}},\;\;\;  R^d (3,1)_{-\frac{1}{3}},\;\;\;  S^u (3,2)_{\frac{1}{6}},\;\;\;  R^u (3,2)_{\frac{2}{3}}$$
+					</li><br/><br/>
+					<li class="fragment grey">Their interactions are given by<br/><br/>
+					$$
+					-\mathcal{L} = \left[   
+					\bar{q}_L\lambda_0^d d_R +\bar{q}_L \lambda_1^d R^d + \bar{S}^d\lambda_2^d d_R + \bar{S}^d\left(  {\lambda_3^d}^\dagger P_L + \lambda_4^d P_R  \right)R^d
+					\right] \phi + \text{h.c.}+ (u \leftrightarrow d)$$
+					<img src="images/interactions.png" style="margin-top:2em;"/>
+					
+					</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/mosquitos_grey.png">
+					<h2>...and back</h2>
+					<br/><br/>
+					<img src="images/tev-yukawa.png" style="margin:2em auto;width:75%;"/>
+					<ul style="margin-top:0.5em;width:80%;">
+					<li class="fragment grey">This gives us the effective Yukawa coupling matrices (analogously for $u$)<br/><br/>
+					$$Y^d=\lambda_0^d+\lambda_1^d\lambda_3^d\frac{\phi^\dagger \phi}{m_{R^d} m_{S^d}}\sum\limits_{n=0}\left( \lambda_4^d\lambda_3^d\frac{\phi^\dagger \phi}{m_{R^d} m_{S^d}}  \right)^n \lambda_2^d = \sum\limits_{n=0}c^{(n)}\left(\frac{\phi^\dagger \phi}{m_{R^d} m_{S^d}}\right)^n$$</li><br/>
+					<li class="fragment grey">Integrating out the heavy particles indeed reproduces the Higgs-dependent Yukawa couplings with $M^2=m_{R^d} m_{S^d}$!</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/mosquitos_grey.png">
+					<h2>Reproduction of the Yukawa matrix texture</h2>
+					
+					<ul style="margin-top:3.5em;width:80%;">
+					<li>Our desired matrix texture could be generated by <br/><br/>
+					$$m_{S,R}=M\operatorname{Id}_{4\times4},\quad\lambda_1^{u,d}=\operatorname{Id}_{3\times4},\quad\lambda_2^{u,d}=\operatorname{Id}_{4\times3},$$<br/>
+					$$\lambda_3^d=\begin{pmatrix}0&0&0&1\\0&0&0&1\\0&1&1&0\\1&0&0&0\end{pmatrix},\qquad\lambda_4^d=\begin{pmatrix}0&0&0&0\\0&0&0&0\\0&0&0&1\\0&0&1&0\end{pmatrix},$$<br/>
+					$$\lambda_3^u=\begin{pmatrix}0&1&1&0\\0&1&1&0\\0&0&0&1\\1&0&0&0\end{pmatrix},\qquad\lambda_4^u=\begin{pmatrix}0&0&0&0\\0&0&1&0\\0&0&0&0\\0&0&0&1\end{pmatrix},$$<br/>
+					$$\lambda_0^d = 0\quad\text{and} \quad\lambda_0^u=\begin{pmatrix}0&0&0\\0&0&0\\0&1&1\end{pmatrix}.$$
+					</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/mosquitos_grey.png">
+					<h2>Some remarks</h2>
+					
+					<ul style="margin-top:7em;width:80%;">
+					<li>Giudice and Lebedev find that also in the full theory FCNCs are sufficiently suppressed</li><br/><br/>
+					<li class="fragment grey">Higgs-dependent kinetic terms are also introduced. At lowest order<br/><br/>
+					$$\frac{\lambda_1^d\lambda_1^{d\dagger}}{M^2}\;\overline{(\epsilon^{ab}\phi^\dagger_a q_{Lb})}\;i\not D \;(\epsilon^{ab}\phi^\dagger_a q_{Lb}) \;\;+\;\; \frac{\lambda_1^u\lambda_1^{u\dagger}}{M^2}\;\overline{(\epsilon^{ab}\phi_a q_{Lb})}\;i\not D \;(\epsilon^{ab}\phi_a q_{Lb})$$<br/>
+					(analogously for $u_R$ and $d_R$)
+					</li>
+					<li class="fragment grey">These terms give new, partly flavor-violating contributions to couplings to electroweak gauge bosons</li>
+					<li class="fragment grey">For quarks, this is consistent with current constraints, but <b>not</b> for the more precisely measured couplings to leptons!</li>
+					</ul>
+				</section>
+				
+				
+				
+				
+				
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: false,
+				slideNumber:false,
+				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+				
+ 				width:800,
+				height:600,
+				margin:0,
+				minScale: 0.2,
+				maxScale: 2.0,
+
+				math: {
+					mathjax: 'mathjax/MathJax.js',
+					config: 'TeX-AMS-MML_SVG',
+				},
+				
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+			
+			function updateStuff(event){
+				updateBottom(event.indexh);
+				//MathJax.Hub.Rerender();
+				if(event.indexh==0){
+					document.getElementById('topbar').className = "hidden";
+				}else{
+					document.getElementById('topbar').className = "";
+				}
+			}
+			
+			
+			Reveal.addEventListener( 'slidechanged', updateStuff );
+				
+			Reveal.addEventListener( 'ready', updateStuff );
+			
+			
+		</script>
+
+	</body>
+</html>
