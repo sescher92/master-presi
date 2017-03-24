@@ -1,0 +1,29 @@
+@font-face {
+	font-family: 'Akkurat';
+	src: url('fonts/AkkRg_Pro_1.eot');
+	src: local('☺'), url('fonts/AkkRg_Pro_1.ttf') format('truetype'), url('fonts/AkkRg_Pro_1.svg') format('svg'), url('fonts/AkkRg_Pro_1.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Akkurat';
+	src: url('fonts/AkkIt_Pro_1.eot');
+	src: local('☺'), url('fonts/AkkIt_Pro_1.ttf') format('truetype'), url('fonts/AkkIt_Pro_1.svg') format('svg'), url('fonts/AkkIt_Pro_1.woff') format('woff');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Akkurat';
+	src: url('fonts/AkkBd_Pro_1.eot');
+	src: local('☺'), url('fonts/AkkBd_Pro_1.ttf') format('truetype'), url('fonts/AkkBd_Pro_1.svg') format('svg'), url('fonts/AkkBd_Pro_1.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Akkurat';
+	src: url('fonts/AkkBdIt_Pro_1.eot');
+	src: local('☺'), url('fonts/AkkBdIt_Pro_1.ttf') format('truetype'), url('fonts/AkkBdIt_Pro_1.svg') format('svg'), url('fonts/AkkBdIt_Pro_1.woff') format('woff');
+	font-weight: bold;
+	font-style: italic;
+}

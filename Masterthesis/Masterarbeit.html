@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="de">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Masterarbeit - Stephan Escher</title>
+
+		<meta name="description" content="Masterarbeit">
+		<meta name="author" content="Stephan Escher">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="fonts.css">
+		<link rel="stylesheet" href="css/topbar.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/light.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+			
+			datum = "27.03.2017";
+			longdatum = "27 März 2017";
+			
+			function updateBottom(slide){
+				slideCount=33;
+				result = "";
+				if(slide != 0 && slide != 2 && slide != 5 && slide != 11 && slide != 21 && slide != 34 ){
+					result = "<span class=\"page\">Slide "+slide+"/"+slideCount+"</span>, Masterarbeit @ TU Dortmund von Stephan Escher, "+datum;
+				}
+				document.getElementById('bottombar').innerHTML=result;
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		
+		<div id="bottombar"><span class="page">Slide 2/33</span>, Masterarbeit @ TU Dortmund von Stephan Escher, 4.11.2014</div>
+		
+		<div class="reveal">
+		<div id=topbar class="hidden"></div>
+			<div class="slides">
+				<section style="height:100%" data-background="images/backgrounds/lhcb2_grey.png">
+					<h1 style="font-size:2.2em;margin-top:2em;font-weight:bold;">Simulation studies of scintillating fibre<br/>mats for the LHCb upgrade</h1>
+					<!--div id="topbar"><span name="chapter">1. Einführung</span></div-->
+					<div style="position:absolute;bottom:0%;width:100%;padding:20px;">
+						<div style="display:inline-block;vertical-align:top;font-size:0.8em">
+						<div style="width:100%;clear:both;text-align:center;">
+						<div style="display:inline-block;margin-bottom:0.5em;margin-top:8em;font-size:1.4em;">Präsentation der Masterarbeit von <a href="mailto:stephan.escher@tu-dortmund.de">Stephan Escher</a>
+						</div><br/>
+							<center><script>document.write("RWTH Aachen   " + longdatum);</script></center>
+						</div>
+						<div style="width:100%;margin-bottom:0.0em;margin-top:6em;font-size:1.4em;">
+						<img src="images/tu.png" style="height:60px;float:left;margin-top:3em;"/>
+						<img src="images/lhcb_logo.gif" style="height:60px;float:middle;margin-top:3em;"/>
+						<img src="images/scifi.png" style="height:65px;float:right;margin-top:3em;"/>
+						</div>
+					</div>
+					</div>
+				</section>
+				
+				
+				<section style="height:100%" data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Inhaltsverzeichnis</h2>
+					<div style="text-align:left;margin-top:8em;width:40%; margin-left:auto;margin-right:auto;font-size:1.05em;"><div style="font-size:1.2em;text-align:center;width:100%;margin-bottom:1.5em;">Diese Präsentation beinhaltet:</div>
+					<ol style="list-style-type: upper-roman;">
+						<li >Vorstellung des <b>LHCb</b> Detektors </br> und die Motivation des <b>Upgrades</b></li>
+						<li >Vorstellung des <b>SciFi Trackers</b></li>
+						<li >Testbeam Kampagne 2016 am <b>CERN</b></br> und anschließende Datenanalyse</li>
+						<!--<li >A possible <b>TeV Completion</b></li>-->
+						<li >stand-alone Simulation von</br> szintillierenden Fasermatten</li>
+						<li >Zusammenfassung</li>
+					</ol></div>
+				</section>
+				
+				
+				
+				
+				
+				
+				<section data-background="images/backgrounds/lhcb2_grey.png">
+					<div style="text-align:left; padding:1em;margin-top:1.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'">Vorstellung des</span>
+					<h1 style="margin-top:6px;font-size:2em;">LHCb Detektors und dessen Upgrade</h1>
+					</div>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Das LHCb Experiment</h2>
+					<img src="images/lhcb.png" style="float:right;width:35%;margin-top:3em;margin-right: 3em"/>
+					<ul style="float:left;width:50%;margin-top:3em;margin-left:3em;">
+					<li>LHCb misst <i>CP</i>-Verletzung im $B_{d}$ und $B_{s}$ Sytem, </br> sucht nach Neuer Physik jenseits des Standardmodells
+					</li>
+					<li  >Hauptanforderungen an den Detektor:</br>
+						zuverlässige Unterscheidung von $\pi$/$K$,</br>
+						hohe Zerfallszeit Auflösung,</br>
+						gute Auflösung von Teilchenmassen
+					</li>
+					</ul>
+					<ul style="width:100%;margin-top:2em;margin-left:3em;">
+					
+					<div style="text-align:center;width:100%;" ><b>Detektor Komponenten:</b></div>
+					<li ><b>RICH 1/2:</b> messen Teilchengeschwindigkeit über Cherenkov-Effekt, </br> ermöglicht Teilchenidentifizierung (z.B. bei $\pi$ und $K$) 
+					</li>
+					<li ><b>VELO:</b> misst 3D Track-Positionen zur Rekonstruktion von Vertices, </br> ermöglicht u.A. Messung von Zerfallszeiten
+					</li>
+					<li ><b>Tracking Stationen:</b> ermöglichen Rekonstruktion von Teilchenspuren und Massen
+					</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Detektor Upgrade</h2>
+					<img src="images/upgrade.png" style="float:right;width:40%;margin-top:3em;margin-right: 3em"/>
+					<ul style="float:left;width:45%;margin-top:3em;margin-left: 3em;">
+					<li> instantane Luminosität wird auf $\mathcal{L}_{\text{inst}}= 2\cdot 10^{33}~\text{cm}^{-2}\text{s}^{-1}$ erhöht
+					</li>
+					<li >verbesserte Trigger Effizienz für eine</br> Vielzahl an Zerfallskanälen
+					</li>
+					</ul>
+					<ul style="width:100%;margin-top:2em;margin-left:3em">
+					
+					<div style="text-align:center;width:100%" ><b>Veränderungen:</b></div>
+					<li ><b>Trigger:</b> Einsatz eines vollen Software-Trigger Systems, benötigt Auslese des gesamten Detektors mit $40~\text{MHz}$ $\rightarrow$ Austausch der Front-End Elektronik
+					</li>
+					<li ><b>Tracking:</b> erhöhte $\mathcal{L}_{\text{inst}}$ verlangt nach höherer Granularität und Strahlenhärte der Tracking-Detektoren</br> $\rightarrow$ Upgrade des VELO und TT, sowie Ersetzung von T1-T3 durch dem <b>SciFi Tracker</b>
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_grey.png">
+					<div style="text-align:left; padding:1em;margin-top:1.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'">Vorstellung des</span>
+					<h1 style="margin-top:6px;font-size:2em;">SciFi Trackers</h1>
+					</div>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Anforderungen</h2>
+					
+					<ul style="margin-top:8em;width:83%;">
+					<li>Hit-Effizienz so groß wie möglich ($\approx 99\,\%$) mit einer Rausch-Cluster-Rate von $\lt 10\,\%$ </li>
+					<li >räumliche Auflösung von $\le 100~\mu\text{m}$ in der Ablenkebene des Magneten
+					</li>
+					<li >Materialmenge innerhalb der Akzeptanz minimieren $(\chi/\chi_0 \le 1\,\%)$
+					</li>
+					<li >Auslese des Detektors mit $40~\text{MHz}$ 
+					</li>
+					<li >Detektor sollte diese Anforderungen auch nach Bestrahlung in Höhe von $50~\text{fb}^{-1}$ erfüllen
+					</li>
+					</ul>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Layout</h2>
+					<ul style="margin-top:3em;width:80%;">
+					<li>in allen $3$ Stationen gibt es $4$ Detektorlagen in $x$-$u$-$v$-$x$ Anordnung
+					</li>
+					<li >Detektorlagen bestehen aus $10$-$12$ Modulen mit jeweils $8$ Fasermatten
+					</li>
+					<li >Fasermatten haben $6$ Lagen aus $2.5~\text{m}$ langen szintillierenden Fasern,</br>an einem Ende ist ein Spiegel am Anderen Auslese durch SiPMs
+					</li>
+					</ul>
+					<img src="images/module.png" style="width:55%;margin-top:4em;"/>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Szintillierende Fasern</h2>
+					<ul style="margin-top:3em;width:80%;">
+					<li>wenige $\text{eV}$ deponierter Energie reichen aus um das Polystyrol anzuregen
+					</li>
+					<li >Anregungsenergie geht auf P-Terphenyle via Förster-Transfer über</br> $\rightarrow$ kürzere Relaxationszeit und bessere Lichtausbeute
+					</li>
+					<li >Verminderung von Selbstabsorption durch Wellenlängenschieber (TPB)
+					</li>
+					<li >Claddings haben abfallenden Brechungsindex $\rightarrow$ erhöht Lichteinfang auf ca. $10.7\,\%$
+					</li>
+					<li >wellenlängen und winkelabhängige Abschwächung des Lichts in der Faser
+					</li>
+					</ul>
+					<img src="images/spectra.png" style="float:left;width:35%;margin-top:5em;margin-left: 4em;"/>
+					<img src="images/fibre.png" style="float:right;width:37%;margin-top:5em;margin-right: 4em;"/>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Silizium Photomultiplier (SiPM)</h2>
+					<ul style="margin-top:3em;width:80%;">
+					<li>Multi-Pixel Lawinenphotodioden im Geiger Modus
+					</li>
+					<li >SiPMs aus $128$ Kanälen mit je $4\times 26$ Pixeln
+					</li>
+					<li >einzelne Pixel können nur einmal pro Event feuern</br> $\rightarrow N_{\text{photon}} \lt N_{\text{pixel}}$ um Sättigung einzuschränken
+					</li>
+					<li >Photonen-Detektions-Effizienz (PDE):
+						$$\text{PDE} = \frac{N_{\text{detected}}}{N_{\text{total}}} = \epsilon_{\text{qe}}(\lambda) \cdot \epsilon_{\text{avalanche}}(V, T)\cdot \epsilon_{\text{geometric}}$$
+					</li>
+					<li >Rauscheffekte: thermisches Rauschen (DCR), Crosstalk und After-Pulse
+					</li>
+					</ul>
+					<img src="images/sipm.png" style="float:left;width:35%;margin-top:2em;margin-left: 4em;"/>
+					<img src="images/pde.png" style="float:right;width:38%;margin-top:2em;margin-right: 4em;"/>
+				</section>
+				
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Clusterbildung</h2>
+					<img src="images/clusterisation.png" style="float:left;margin:3em 3em 0em 3em;padding:0;width: 280px;height:400px;" />
+					<ul style="float:right;width:50%;margin-top:7em;margin-right: 0em;">
+					<li> erzeugte Photonen können sich über mehrere SiPM-Kanäle verteilen
+					</li>
+					<li >Algorithmus kombiniert benachbarte Kanäle mit Ladung
+					</li>
+					<li >dabei werden Grenzwerte angewendet um Rauschsignale zu unterdrücken
+					</li>
+					<li >Information zur Teilchenposition aus ladungsgewichtetem Mittelwert
+					</li>
+					<li >wichtige Größen: <i>Clusterladung</i>, <i>Clustergröße</i> und <i>mittlere Signalposition</i>
+					</li>
+					</ul>
+				</section>				
+				
+				<section data-background="images/backgrounds/lhcb2_grey.png">
+					<div style="text-align:left; padding:1em;margin-top:1.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'">Analyse der</span>
+					<h1 style="margin-top:6px;font-size:2em;">Testbeam Kampagne 2016</h1>
+					</div>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Datenaufnahme</h2>
+					
+					<ul style="margin-top:2em;width:80%;">
+					verwendete Prototyp Fasermatten:</br>
+					<li>$5$ lagige Matte $2014$ im LHC Tunnel bestrahlt 
+					</li>
+					<li>$6$ lagige Matte $2015$ in der CERN PS IRRAD Einrichtung bestrahlt
+					</li>
+					<li>$6$ lagige Matte $2016$ in der CERN PS IRRAD Einrichtung bestrahlt (DUT)
+					</li></br>
+					<span >Bestrahlung soll Strahlenschaden nach der LHCb-Upgrade Lebensdauer</br> für Matten nahe des Strahlrohrs (worst case) entsprechen</span>
+					</ul>
+					<img src="images/testbeam.png" style="width:40%;margin-top:3em;"/>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Konvertierung der Rohdaten</h2>
+					
+					<ul style="margin-top:3em;width:83%;">
+					Messungen zur Kalibrierung:</br>
+					<li>Pedestal: Messung ohne aktive Lichtquelle
+					</li>
+					<li >Verstärkung: Messung mit angeschalteten LED-Leisten
+					</li>
+					</ul>
+					<ul style="margin-top:1em;width:83%;" >
+					Umrechung der $ADC$ Zahl: 
+					$$ADC_{\text{eff}}=\frac{ADC_{\text{total}} - ADC_{\text{pedestal}}}{f_{\text{gain}}}$$
+					</li>
+					</ul>
+					<img src="images/adc2.png" style="width:40%;margin-top:1em;" />
+					<ul style="margin-top:1em;width:83%;" >
+					vertikale Fehljustierung der Matten im Messaufbau $\rightarrow$</br> 
+						Veränderung der Clusterposition der Tracking-Module bis sie mit DUT übereinstimmen
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Selektion</h2>
+					
+					<ul style="margin-top:3em;width:80%;">
+					<li>
+					Erzeugung eines möglichst 'sauberen' Datensatzes, d.h. Trennung von Events mit  Rauschclustern, Sekundärteilchen </br></li>
+					<li >Folgende Anforderungen wurden an ein Event gestellt:
+					
+					<ol style="list-style-type: upper-roman;">
+						<li> es gibt genau ein Cluster in beiden Tracking-Modulen
+						<li>ein Cluster im DUT darf nur um $\le 1~\text{mm}$ von der Position abweichen,</br> die geometrisch aus Clusterpositionen der Tracking-Module folgt
+						<li>maximale Clustergröße ist $6$
+					</ol>
+					</li>
+					<li >Grenzwerte des Cluster-Algorithmus:</br>
+						Summe $4.5~\text{p.e.}$; Start $2.5~\text{p.e.}$; Nachbar $1.5~\text{p.e.}$
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Clusterladung I</h2>
+					
+					<ul style="margin-top:3em;width:80%;">
+					<li>Clusterladung hat großen Einfluss auf die Tracking-Performanz des Detektors 
+					</li>
+					</ul>
+					<img src="images/beam_compare.png" style="width:60%;margin-top:2em;"/>
+					<ul style="margin-top:2em;width:80%;">
+					<li > kleine Minima sind Folge von SiPM Lücken zwischen zwei Arrays bzw. Dies
+					</li>
+					<li >kaum Unterschied zwischen Pion/Myon Strahl $\leftarrow$ sind beides MIPs
+					</li>
+					<li >im bestrahlten Bereich sinkt Clusterladung auf $64\,\%$ 
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Clusterladung II</h2>
+					
+					<ul style="margin-top:3em;width:80%;">
+					<li>Vergleich zwischen Hamamatsu H2014 und H2015 SiPMs 
+					</li>
+					</ul>
+					<img src="images/sipm_compare.png" style="width:60%;margin-top:2em;"/>
+					<ul style="margin-top:2em;width:80%;">
+					<li >H2015 SiPMs weisen leicht höheren Charge ($\lt 2\,\%$) auf durch bessere PDE ($\approx 10\,\%$), </br>
+						höhere Verstärkung durch Rauscheffekte der H2014 gleichen dies jedoch fast aus
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Clustergröße vs. Clusterladung</h2>
+					<ul style="margin-top:3em;width:80%;">
+					<li>linearer Fit der mittleren Clustergrößen jedes Clusterladungs-Bins
+					</li>
+					</ul>
+					<img src="images/cs14.png" style="float:left;width:40%;margin-top:2em;margin-left: 4em;"/>
+					<img src="images/cs15.png" style="float:right;width:40%;margin-top:2em;margin-right: 4em;"/>
+					<ul style="margin-top:2em;width:80%;" >
+					<li>$\rightarrow$ H2014 SiPMs (links) haben bei gleicher Ladung größere Cluster als H2015 (rechts)
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Hit Effizienz I</h2>
+					<ul style="margin-top:2em;width:80%;">
+					<li>die Hit Effizienz ist von fundamentaler Bedeutung für den SciFi Tracker
+					</li>
+					<li>Berechung als Quotient zwischen Events mit gefundenem Cluster im DUT</br> und allen betrachteten Events 
+					</li>
+					<li>ist stark abhängig von den angewandten Cluster-Grenzwerten
+					</li>
+					</ul>
+					<img src="images/eff_thresh.png" style="width:60%;margin-top:1em;"/>
+					<ul style="margin-top:0.5em;width:80%;">
+					<table style="margin-left:4em;" id="table-first-measure"><thead><tr><th>SiPM </th><th> Summen-Grenzwert [p.e.] </th><th> bestrahlt [$\%$] </th><th> unbestrahlt [$\%$] </th><th></thead>
+					<tbody><tr><td style="text-align:center">H2015 </td><td style="text-align:center">  4.5 </td><td style="text-align:center"> $85.4\pm0.5$ </td><td style="text-align:center"> $98.0\pm0.2$ </td></tr><tr><td style="text-align:center">
+						H2015 </td><td style="text-align:center"> 2.5 </td><td style="text-align:center">  $94.6\pm0.2$ </td><td style="text-align:center"> $99.0\pm0.1$ </td></tr><tr><td style="text-align:center">
+						H2014 </td><td style="text-align:center"> 4.5 </td><td style="text-align:center">  $81.2\pm0.6$</td><td style="text-align:center"> $96.9\pm0.1$ </td></tr><tr><td style="text-align:center">
+						H2014 </td><td style="text-align:center"> 2.5 </td><td style="text-align:center">  $91.1\pm0.5$ </td><td style="text-align:center"> $98.4\pm0.1$ </td></tr><tr>
+					</tbody>
+					</table>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Hit Effizienz II</h2>
+					<ul style="margin-top:3em;width:80%;">
+					<li>wichtige Kenngröße: Hit Effizienz in Abhängigkeit der Clusterladung
+					</li>
+					<li>Fit mit exponential Funktion
+						$$f(x) = 1-\alpha e^{-x/\beta}$$
+					</li>
+					</ul>
+					<img src="images/efficiency_2014.png" style="width:60%;margin-top:2em;"/>
+					<ul style="margin-top:2em;width:80%;">
+					<li>Hit Effizienz höher für H2015 SiPMs, da sie geringere Clustergrößen</br> und höhere Clusterladung aufweisen
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Winkelmessungen</h2>
+					<ul style="margin-top:3em;width:80%;">
+					<li>Veränderung des Einfallswinkels des Strahls durch Kippen der Matten
+					</li>
+					<li>Clusterladung und Größen steigen wie erwartet mit dem Winekl an
+					</li>
+					</ul>
+					<img src="images/deg_charge.png" style="width:40%;margin-top:2em;"/>
+					<ul style="margin-top:2em;width:80%;">
+					<li>Winkelmessungen ermöglichen aussagekräftige Gegenproben</br> mit Simulationsergebnissen
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_grey.png">
+					<div style="text-align:left; padding:1em;margin-top:1.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'">Entwicklung und Ergebnisse der</span>
+					<h1 style="margin-top:6px;font-size:2em;">stand-alone Simulation</h1>
+					</div>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Motivation</h2>
+					
+					<ul style="margin-top:3em;width:80%;">
+					LHCb Simulation des SciFi Trackers verwendet mehrere vereinfachte Modelle/Annahmen um effektiv zu arbeiten:
+					<li>Fasermatten sind homogene Blöcke $\rightarrow$ keine Fasermatrix-Struktur und Lichtführung
+					</li>
+					<li>Anzahl erzeugter Photonen wird über Menge an deponierter Energie abgeschätzt
+					</li>
+					<li>Abschwächung des Lichts
+						$$a(l)=F_s \exp{\left(-\frac{l}{\lambda_{short}}\right)} + (1-F_S) \exp{\left(-\frac{l}{\lambda_{long}}\right)}$$
+					</li>
+					<li>Spur der Photonen wird nicht berechnet $\rightarrow$ Verteilung auf SiPM Kanäle über das light-sharing Model
+					</li>
+					</br></br></br>
+					<span >Simulationsergebnisse weisen signifikante Unterschiede zu Testbeam Daten auf</br> (zu kleine Clustergrößen, Hit Effizienz überschätzt, etc.) </br> $\rightarrow$ Modelle müssen erweitert/verbessert werden</span>
+					</ul>
+					<div style="inline-block; width:75%;margin:auto;text-align:left;margin-top:3em;font-weight:bold;" ><span style="margin-left:-1em;">⇒ </span>Erstellung von detaillierten Simulationen</div>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>stand-alone Simulation: Aufbau</h2>
+					<img src="images/geometry.png" style="float:right;margin:3em 3em 0em 0em;width: 35%;" />
+					<ul style="float:left;width:45%;margin-top:3em;margin-left: 3em;">
+					<li> 2D Struktur eines Querschnitts einer Fasermatte mit realistischer Faserpositionierung implementiert
+					</li>
+					<li >für jede getroffene Faser: Abstand Fasermittelpunkt zu Teilchenspur berechnen
+					</li>
+					<li >zufälliges Event aus $\mbox{Geant4}$ Einzelfaser-Simulation mit ähnlichem Faser-Spur-Abstand
+					</li>
+					<li >$\mbox{Geant4}$ liefert Austrittsort, Impulsvektor und Wellenlänge für alle austretenden Photonen
+					</li>
+					<li >Berechnung des Auftreffpunkts in SiPM-Ebene ($100~\mu\text{m}$ Lücke aus Epoxidharz)
+					</li>
+					</ul>
+					<ul style="margin-top:2em;margin-left:3em;width:100%;">
+					<li >Befüllen der SiPM Kanäle unter Berücksichtigung von PDE, Noise und Sättigung
+					</li>
+					<li >Ausführen eines Cluster-Algorithmus
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Ergebnisse (Teilcheneinfallswinkel $0^{\circ}$)</h2>
+					<img src="images/chord_gauss.png" style="float:left;margin:3em 0em 0em 3em;width: 28%;" />
+					<img src="images/prodPhot.png" style="float:center;margin:3em 0em 0em 0em;width: 28%;" />
+					<img src="images/detecPhot.png" style="float:right;margin:3em 3em 0em 0em;width: 28%;" />
+					<img src="images/sipmPhot.png" style="float:left;margin:2em 0em 0em 3em;width: 28%;" />
+					<img src="images/chargeP.png" style="float:center;margin:2em 0em 0em 0em;width: 28%;" />
+					<img src="images/sizeP.png" style="float:right;margin:2em 3em 0em 0em;width: 28%;" />
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Vergleich mit Testbeam Daten: Clusterladung I</h2>
+					<ul style="float:left;width:100%;margin-top:2em;margin-left: 3em;">
+						Einfallswinkel: $0^{\circ}$, $3^{\circ}$, $10^{\circ}$, $15^{\circ}$, $20^{\circ}$ und $25^{\circ}$</ul>
+					<img src="images/compare/nct/clustercharge0deg.png" style="float:left;margin:2em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/nct/clustercharge3deg.png" style="float:center;margin:2em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/nct/clustercharge10deg.png" style="float:right;margin:2em 3em 0em 0em;width: 28%;" />
+					<img src="images/compare/nct/clustercharge15deg.png" style="float:left;margin:2em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/nct/clustercharge20deg.png" style="float:center;margin:2em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/nct/clustercharge25deg.png" style="float:right;margin:2em 3em 0em 0em;width: 28%;" />
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Vergleich mit Testbeam Daten: Clustergröße I</h2>
+					<img src="images/compare/nct/clustersize0deg.png" style="float:left;margin:5em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/nct/clustersize3deg.png" style="float:center;margin:5em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/nct/clustersize10deg.png" style="float:right;margin:5em 3em 0em 0em;width: 28%;" />
+					<img src="images/compare/nct/clustersize15deg.png" style="float:left;margin:2em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/nct/clustersize20deg.png" style="float:center;margin:2em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/nct/clustersize25deg.png" style="float:right;margin:2em 3em 0em 0em;width: 28%;" />
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Faser-Crosstalk</h2>
+					<ul style="float:left;width:80%;margin-top:3em;margin-left: 3em;">
+					<li> bisher: alle Photonen die nicht via Totalreflexion in der Faser propagieren</br> werden nicht weiter betrachtet
+					</li>
+					<li>aber: UV-Photonen können primäre Faser verlassen ohne wellenlängen-verschoben zu werden $\rightarrow$ Eintritt in Nachbar-Faser $\rightarrow$ können dort wellenlängen-verschoben werden und ans Faserende propagieren
+					</li>
+					</ul>
+					<img src="images/uv.png" style="float:center;margin:1.5em 0em 0em 0em;width: 30%;" />
+					<ul style="float:left;width:80%;margin-top:1.5em;margin-left: 3em;">
+					<li> Messung von Faser-Crosstalk in $\mbox{Geant4}$ Simulation $\rightarrow$ Anteil von Crosstalk</br> an der Gesamtladung: $20\,\%$
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Auswirkung von Faser-Crosstalk</h2>
+					<img src="images/sipmLoc_nct.png" style="float:left;margin:7em 0em 0em 3em;width: 40%;" />
+					<img src="images/sipmLoc_ct.png" style="float:right;margin:7em 3em 0em 0em;width: 40%;" />
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Vergleich mit Testbeam Daten: Clusterladung II</h2>
+					<img src="images/compare/ct/clustercharge0deg.png" style="float:left;margin:5em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/ct/clustercharge3deg.png" style="float:center;margin:5em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/ct/clustercharge10deg.png" style="float:right;margin:5em 3em 0em 0em;width: 28%;" />
+					<img src="images/compare/ct/clustercharge15deg.png" style="float:left;margin:2em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/ct/clustercharge20deg.png" style="float:center;margin:2em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/ct/clustercharge25deg.png" style="float:right;margin:2em 3em 0em 0em;width: 28%;" />
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Vergleich mit Testbeam Daten: Clustergröße II</h2>
+					<img src="images/compare/ct/clustersize0deg.png" style="float:left;margin:5em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/ct/clustersize3deg.png" style="float:center;margin:5em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/ct/clustersize10deg.png" style="float:right;margin:5em 3em 0em 0em;width: 28%;" />
+					<img src="images/compare/ct/clustersize15deg.png" style="float:left;margin:2em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/ct/clustersize20deg.png" style="float:center;margin:2em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/ct/clustersize25deg.png" style="float:right;margin:2em 3em 0em 0em;width: 28%;" />
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Vergleich mit Testbeam Daten: Hit Effizienz I</h2>
+					<ul style="float:left;width:80%;margin-top:3em;margin-left: 3em;">
+					<li> Veränderung der Anregungsposition oder des $\# Photonen/Energie$-Verhältnisses </br>
+						$\rightarrow$ Erzegung von Datensätzen mit verschiedener mittlerer Clusterladung
+					</li>
+					<li>Hit Effizienz mit Cluster-Algorithmus ermittlen
+					</li>
+					</ul>
+					<img src="images/compare/efficiency_2016_4,5_2,5.png" style="float:center;margin:1.5em 0em 0em 0em;width: 38%;" />
+					<ul style="float:left;width:80%;margin-top:1.5em;margin-left: 3em;">
+					<li> Test für verschiedene Cluster-Grenzwerte ohne weiteres Tuning</br> für aussagekräftigen Vergleich
+					</li>
+					</ul>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+				<h2>Vergleich mit Testbeam Daten: Hit Effizienz II</h2>
+					<img src="images/compare/efficiency_2016_5,5_2,5.png" style="float:left;margin:5em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/efficiency_2016_4,5_2,5.png" style="float:center;margin:5em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/efficiency_2016_4,0_2,5.png" style="float:right;margin:5em 3em 0em 0em;width: 28%;" />
+					<img src="images/compare/efficiency_2016_3,5_2,5.png" style="float:left;margin:2em 0em 0em 3em;width: 28%;" />
+					<img src="images/compare/efficiency_2016_3,5_1,5.png" style="float:center;margin:2em 0em 0em 0em;width: 28%;" />
+					<img src="images/compare/efficiency_2016_2,5_2,5.png" style="float:right;margin:2em 3em 0em 0em;width: 28%;" />
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_verygrey.png">
+					<h2>Zusammenfassung</h2><br/>
+						<div><h4>Testbeam Analyse:</h4><br/>
+						<ul style="width:80%">
+						<li>Clusterladung sinkt auf $\approx 64\,\%$ im bestrahlten Bereich des DUT</li>
+						<li>Hit Effizienz sinkt auf $(85.4\pm 0.5)\,\%$ für Standard Cluster-Grenzen</li>
+						<li>Verbesserung der Detektor-Performanz durch H2015 SiPMs gegenüber H2014</li>
+						<li>weitere Verbesserung können durch H2016 SiPMs und die finale Modulproduktion erwartet werden</li>
+						</ul><br/><br/></br></div>
+						<div><h4>Simulation:</h4><br/>
+						<ul style="width:80%">
+						<li>Vergleich mit Testbeam in Clusterladung erfolgreich für alle Einfallswinkel</li>
+						<li>Nach Implementierung von Faser-Crosstalk mit $\approx 19\,\%$ der Gesamtladung</br> stimmen auch Clustergrößen und Hit-Effizienzen überein</li>
+						<li>Dieser Erfolg führte zu einer Implementierung von Faser Crosstalk</br> in der LHCb Software</li>
+						</ul></div>
+						
+					<div class="fragment roll-in" style="width:85%;margin-top:1.5em;padding-right:40px;text-align:right;color:#84B818;font-weight:bold;font-size:1.25em;text-shadow: 0px 0px 5px rgba(255,255,255, 1);">Gibt es Fragen?</div>
+				</section>
+				</section>
+
+				<section data-background="images/backgrounds/lhcb2_grey.png">
+					<div style="text-align:left; padding:1em;margin-top:1.5em;display:block;">
+					<span style="text-transform:uppercase;color:#777777;font-size:1em;font-weight:bold;font-family:'DejaVu Sans'"></span>
+					<h1 style="margin-top:6px;font-size:2em;">Anhang</h1>
+					</div>
+				</section>
+
+				<section style="height:100%" data-background="images/backgrounds/cloud_verygrey.png">
+					<h2>Quellen</h2><br/>
+					
+					<div style="text-align:left;width:80%;margin:3em auto;font-size:0.77em;">
+					<b>[1] </b><span>LHCb collaboration, The LHCb Detector at the LHC</br>
+					<a href="http://dx.doi.org/10.1088/1748-0221/3/08/S08005">doi:10.1088/1748-0221/3/08/S08005</a></span><br/>
+					<b>[2] </b><span>LHCb collaboration, LHCb Tracker Upgrade Technical Design Report</br>
+					<a href="https://cds.cern.ch/record/1647400">cds.cern.ch/record/1647400</a></span><br/>
+					<b>[3] </b><span>LHCb collaboration, Letter of Intent for the LHCb Upgrade</br>
+					<a href="https://cds.cern.ch/record/1333091">cds.cern.ch/record/1333091</a></span><br/>
+					<b>[4] </b><span>A. Kuonen et al., LHCb Scintillating Fibre Tracker Engineering Design Review: Silicon Photomultipliers</br>
+					<a href="https://cds.cern.ch/record/2147853">cds.cern.ch/record/2147853</a></span><br/>	 
+					<b>[5] </b><span>R. Ekelhof, Studies for the LHCb SciFi Tracker - </br>Development of Modules from Scintillating Fibres and Tests of their Radiation Hardness</br>
+					<a href="https://cds.cern.ch/record/2212494">cds.cern.ch/record/2212494</a></span><br/>
+					<b>[6] </b><span>M. Deckenhoff, Scintillating Fibre and Silicon Photomultiplier Studies for the LHCb upgrade</br>
+					<a href="http://cds.cern.ch/record/2140068">cds.cern.ch/record/2140068</a></span><br/>
+					</div>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: false,
+				slideNumber:false,
+				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+				
+ 				width:800,
+				height:600,
+				margin:0,
+				minScale: 0.2,
+				maxScale: 2.0,
+
+				math: {
+					mathjax: 'mathjax/MathJax.js',
+					config: 'TeX-AMS-MML_SVG',
+				},
+				
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+			
+			function updateStuff(event){
+				updateBottom(event.indexh);
+				//MathJax.Hub.Rerender();
+				if(event.indexh==0){
+					document.getElementById('topbar').className = "hidden";
+				}else{
+					document.getElementById('topbar').className = "";
+				}
+			}
+			
+			
+			Reveal.addEventListener( 'slidechanged', updateStuff );
+				
+			Reveal.addEventListener( 'ready', updateStuff );
+			
+			
+		</script>
+
+	</body>
+</html>
